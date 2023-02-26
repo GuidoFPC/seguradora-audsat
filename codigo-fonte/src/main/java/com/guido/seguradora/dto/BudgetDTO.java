@@ -2,17 +2,15 @@ package com.guido.seguradora.dto;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.guido.seguradora.model.Insurance;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class InsuranceDTO {
+public class BudgetDTO {
 
 	private BigInteger idInsurance;
 
@@ -26,22 +24,8 @@ public class InsuranceDTO {
 
 	private CarDTO car;
 
-	private List<DriverDTO> drivers;
-
-	private List<ClaimDTO> claims;
-
 	private CustomerDTO customer;
 
 	private Double vrOrcamento;
-
-	public Insurance toInsurance() {
-		Insurance insurance = new Insurance();
-		if (active != null) {
-			insurance.setActive(active);
-		}
-		return insurance;
-	}
-
-
 
 }

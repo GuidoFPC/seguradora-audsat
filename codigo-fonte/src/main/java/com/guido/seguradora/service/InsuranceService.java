@@ -1,7 +1,9 @@
 package com.guido.seguradora.service;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,9 +11,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.guido.seguradora.dto.BudgetDTO;
+import com.guido.seguradora.dto.CarDTO;
+import com.guido.seguradora.dto.CustomerDTO;
 import com.guido.seguradora.dto.InsuranceDTO;
 import com.guido.seguradora.model.Car;
 import com.guido.seguradora.model.Customer;
+import com.guido.seguradora.model.Driver;
 import com.guido.seguradora.model.Insurance;
 import com.guido.seguradora.repository.InsuranceRepository;
 
@@ -79,15 +85,52 @@ public class InsuranceService {
 		return list;
 	}
 
-	/**
-	 * Retorna um Precificação de Seguros pelo id informado
-	 * 
-	 * ----------------------------------------------------------------------------------------
-	 * TODO: ATENCAO: NESTA CONSULTA DEVE-SE RETORNAR OS DADOS DO ORÇAMENTO E O VALOR CALCULADO
-	 * ----------------------------------------------------------------------------------------
-	 */
 	public Optional<Insurance> findById(BigInteger id) {
 		return repository.findById(id);
+	}
+
+	/**
+	 * Retorna um Precificação de Seguros pelo id informado
+	 */
+	public BudgetDTO findByIdToDto(BigInteger id) {
+		Optional<Insurance> optional = repository.findById(id);
+		BudgetDTO dto = null;
+		if (optional.isPresent()) {
+			Insurance insurance = optional.get();
+			dto = new BudgetDTO();
+			dto.setActive(insurance.isActive());
+			dto.setIdInsurance(insurance.getIdInsurance());
+			dto.setDtCreation(insurance.getDtCreation());
+			dto.setDtUpdated(insurance.getDtUpdated());
+			dto.setCar(new CarDTO(insurance.getCar()));
+			dto.setCustomer(new CustomerDTO(insurance.getCustomer()));
+
+			double taxa = 6.0; // O valor base de cálculo do orçamento é de 6% com base no valor da tabela fipe do veículo
+
+			// O motorista principal se encontra na faixa etária de 18 a 25 anos
+			Driver driver = insurance.getCustomer().getDriver();
+			int years = Period.between(driver.getDtBirthdate(), LocalDate.now()).getYears();
+			if (years > 18 && years < 25) {
+				taxa += 2.0;
+			}
+			
+			// O motorista principal possui sinistro em seu nome
+			Boolean isDriverHaveClaim = claimService.isDriverHaveClaim(driver);
+			if (isDriverHaveClaim) {
+				taxa += 2.0;
+			}
+
+			// O veículo ao qual será segurado possui sinistro
+			Boolean isCarHaveClaim = claimService.isCarHaveClaim(insurance.getCar());
+			if (isCarHaveClaim) {
+				taxa += 2.0;
+			}
+
+			// Valor do veículo x a taxa
+			Double value = (insurance.getCar().getVrFipeValue().doubleValue() / 100) * taxa;
+			dto.setVrOrcamento(Double.valueOf(value));
+		}
+		return dto;
 	}
 
 	/**

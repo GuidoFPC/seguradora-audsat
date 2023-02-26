@@ -18,15 +18,26 @@ public class CarDTO {
 
 	private String manufacturer;
 
-	private String year;
+	private Integer year;
 
 	private BigDecimal fipeValue;
+
+	public CarDTO() {
+	}
+
+	public CarDTO(Car car) {
+		setIdCar(car.getIdCar());
+		setModel(car.getDeModel());
+		setManufacturer(car.getDeManufacturer());
+		setYear(car.getNuYear());
+		setFipeValue(car.getVrFipeValue());
+	}
 
 	public Car toCar() {
 		Car car = new Car();
 		car.setDeModel(model);
 		car.setDeManufacturer(manufacturer);
-		car.setDeYear(year);
+		car.setNuYear(year);
 		car.setVrFipeValue(fipeValue);
 		return car;
 	}

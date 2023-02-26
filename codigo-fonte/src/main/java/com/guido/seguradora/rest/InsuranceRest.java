@@ -2,7 +2,6 @@ package com.guido.seguradora.rest;
 
 import java.math.BigInteger;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.guido.seguradora.dto.BudgetDTO;
 import com.guido.seguradora.dto.InsuranceDTO;
 import com.guido.seguradora.model.Insurance;
 import com.guido.seguradora.service.InsuranceService;
@@ -76,11 +76,11 @@ public class InsuranceRest {
 	 * @return Insurance
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<Insurance> findInsuranceById(@PathVariable("id") BigInteger id) {
-		Optional<Insurance> optional = service.findById(id);
+	public ResponseEntity<BudgetDTO> findInsuranceById(@PathVariable("id") BigInteger id) {
+		BudgetDTO dto = service.findByIdToDto(id);
 
-		if (optional.isPresent()) {
-			return new ResponseEntity<>(optional.get(), HttpStatus.OK);
+		if (dto != null) {
+			return new ResponseEntity<>(dto, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

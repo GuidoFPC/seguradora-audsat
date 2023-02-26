@@ -1,7 +1,7 @@
 package com.guido.seguradora.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -25,7 +25,7 @@ public class Insurance implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_insurance", unique = true, nullable = false, precision = 11)
-	private BigDecimal idInsurance;
+	private BigInteger idInsurance;
 
 	@Column(name = "dt_creation", nullable = false)
 	private LocalDateTime dtCreation; // Data da solicitação do orçamento

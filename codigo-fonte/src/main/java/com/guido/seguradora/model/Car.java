@@ -31,8 +31,8 @@ public class Car implements Serializable {
 	@Column(name = "de_manufacturer", nullable = false, length = 200)
 	private String deManufacturer;
 
-	@Column(name = "de_year", nullable = false, length = 4)
-	private String deYear;
+	@Column(name = "de_year", nullable = false)
+	private Integer nuYear;
 
 	@Column(name = "vr_fipe_value", nullable = false, precision = 11, scale = 2)
 	private BigDecimal vrFipeValue;

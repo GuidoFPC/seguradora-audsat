@@ -68,6 +68,22 @@ public class ClaimService {
 	}
 
 	/**
+	 * O motorista possui sinitro ?
+	 */
+	public Boolean isDriverHaveClaim(Driver driver) {
+		List<Claim> list = repository.findByDriver(driver);
+		return list.size() > 0;
+	}
+
+	/**
+	 * O veículo possui sinitro ?
+	 */
+	public Boolean isCarHaveClaim(Car car) {
+		List<Claim> list = repository.findByCar(car);
+		return list.size() > 0;
+	}
+
+	/**
 	 * Retorna todos os Sinistros cadastrados
 	 */
 	public List<Claim> findAll() {

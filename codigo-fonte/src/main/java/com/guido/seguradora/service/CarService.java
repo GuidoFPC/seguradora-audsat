@@ -39,7 +39,7 @@ public class CarService {
 			objectBD = optional.get();
 			objectBD.setDeManufacturer(car.getDeManufacturer());
 			objectBD.setDeModel(car.getDeModel());
-			objectBD.setDeYear(car.getDeYear());
+			objectBD.setNuYear(car.getNuYear());
 			objectBD.setVrFipeValue(car.getVrFipeValue());
 			objectBD = repository.save(objectBD);
 		}
