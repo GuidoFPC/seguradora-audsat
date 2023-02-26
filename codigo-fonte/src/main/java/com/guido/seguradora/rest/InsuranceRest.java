@@ -17,86 +17,99 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.guido.seguradora.models.Driver;
-import com.guido.seguradora.services.DriverService;
+import com.guido.seguradora.dto.InsuranceDTO;
+import com.guido.seguradora.model.Insurance;
+import com.guido.seguradora.service.InsuranceService;
 
 /**
- * Disponibilidade das funções rest para Motorista.
+ * Disponibilidade das funções rest para Orçamento de Seguro.
  */
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/insurance")
+@RequestMapping("/insurance/budget")
 public class InsuranceRest {
 
 	@Autowired
-	private DriverService service;
+	private InsuranceService service;
 
 	/**
-	 * Incluir um motorista
+	 * Cadastro de Orçamento de Seguro
 	 */
 	@PostMapping
-	public ResponseEntity<Driver> save(@RequestBody Driver driver) {
+	public ResponseEntity<Object> saveInsurance(@RequestBody InsuranceDTO dto) {
 		try {
-			Driver _driver = service.save(driver);
+			Insurance _insurance = service.save(dto);
 
-			return new ResponseEntity<>(_driver, HttpStatus.CREATED);
+			return new ResponseEntity<>(_insurance, HttpStatus.CREATED);
 		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			e.printStackTrace();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 	}
 
 	/**
-	 * Lista todos os motoristas
+	 * Lista todos os Orçamentos de Seguro
+	 * 
+	 * -----------------------------------------------------------------------------
+	 * TODO: ATENCAO: ESSE METODO NAO FOI SOLICITADO.
+	 * -----------------------------------------------------------------------------
 	 */
 	@GetMapping
-	public ResponseEntity<List<Driver>> all() {
+	public ResponseEntity<List<Insurance>> findAllInsurances() {
 		try {
-			List<Driver> drivers = service.findAll();
+			List<Insurance> insurances = service.findAll();
 
-			if (drivers.isEmpty()) {
+			if (insurances.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
-			return new ResponseEntity<>(drivers, HttpStatus.OK);
+			return new ResponseEntity<>(insurances, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	/**
-	 * Retorna um motorista pelo ID
+	 * Consulta de Orçamento por ID
+	 * 
+	 * @param id - BigInteger (id_insurance)
+	 * 
+	 * @return Insurance
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<Driver> findById(@PathVariable("id") BigInteger id) {
-		Optional<Driver> data = service.findById(id);
+	public ResponseEntity<Insurance> findInsuranceById(@PathVariable("id") BigInteger id) {
+		Optional<Insurance> optional = service.findById(id);
 
-		if (data.isPresent()) {
-			return new ResponseEntity<>(data.get(), HttpStatus.OK);
+		if (optional.isPresent()) {
+			return new ResponseEntity<>(optional.get(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
 	/**
-	 * Atualiza os dados de um motorista
+	 * Atualização do Orçamento de Seguro
+	 * 
+	 * @param id        - BigInteger (id_insurance)
+	 * @param insurance - Insurance
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<Driver> update(@PathVariable(value = "id") BigInteger id, @RequestBody Driver driver) {
-		Driver _driverBD = service.update(id, driver);
+	public ResponseEntity<Insurance> updateInsurance(@PathVariable(value = "id") BigInteger id, @RequestBody Insurance insurance) {
+		Insurance _insuranceBD = service.update(id, insurance);
 
-		if (_driverBD != null) {
-			return new ResponseEntity<>(_driverBD, HttpStatus.OK);
+		if (_insuranceBD != null) {
+			return new ResponseEntity<>(_insuranceBD, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
 	/**
-	 * Apaga um determinado motorista por ID.
+	 * Remoção do Orçamento de Seguro
 	 * 
-	 * @param id
+	 * @param id - BigInteger (id_insurance)
 	 */
 	@DeleteMapping("/{id}")
-	public ResponseEntity<HttpStatus> delete(@PathVariable("id") BigInteger id) {
+	public ResponseEntity<HttpStatus> deleteInsurance(@PathVariable("id") BigInteger id) {
 		try {
 			service.delete(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

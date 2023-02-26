@@ -1,39 +1,35 @@
-package com.guido.seguradora.models;
+package com.guido.seguradora.model;
 
 import java.io.Serializable;
 import java.math.BigInteger;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "car_drivers")
-public class CarDriver implements Serializable {
+@Entity(name = "drivers")
+public class Driver implements Serializable {
 
-	private static final long serialVersionUID = 62214941431215267L;
+	private static final long serialVersionUID = -826124721603823589L;
 
 	@Id
-	// @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_driver", unique = true, nullable = false, precision = 11)
-	private BigInteger idCarDriver;
+	private BigInteger idDriver;
 
-	@Column(name = "is_main_driver", nullable = false, length = 1)
-	private Boolean isMainDriver;
+	@Column(name = "nu_document", nullable = false, precision = 11)
+	private BigInteger nuDocument;
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "id_driver", nullable = false, insertable = false, updatable = false)
-	private Driver driver;
-
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "id_car", nullable = false, insertable = false, updatable = false)
-	private Car car;
+	@Column(name = "dt_birthdate", nullable = false)
+	private LocalDate dtBirthdate;
 
 	/**
 	 * Compares this instance with another Drivers.
@@ -43,9 +39,9 @@ public class CarDriver implements Serializable {
 	 */
 	@Override
 	public boolean equals(Object other) {
-		if (!(other instanceof CarDriver))
+		if (!(other instanceof Driver))
 			return false;
-		return this.equalKeys(other) && ((CarDriver) other).equalKeys(this);
+		return this.equalKeys(other) && ((Driver) other).equalKeys(this);
 	}
 
 	/**
@@ -57,13 +53,26 @@ public class CarDriver implements Serializable {
 	public int hashCode() {
 		int i;
 		int result = 17;
-		if (getIdCarDriver() == null) {
+		if (getIdDriver() == null) {
 			i = 0;
 		} else {
-			i = getIdCarDriver().hashCode();
+			i = getIdDriver().hashCode();
 		}
 		result = 37 * result + i;
 		return result;
+	}
+
+	/**
+	 * Returns a debug-friendly String representation of this instance.
+	 *
+	 * @return String representation of this instance
+	 */
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer("[Drivers |");
+		sb.append(" idDriver=").append(getIdDriver());
+		sb.append("]");
+		return sb.toString();
 	}
 
 	/**
@@ -81,7 +90,7 @@ public class CarDriver implements Serializable {
 			return false;
 		}
 		Driver that = (Driver) other;
-		Object myIdDriver = this.getIdCarDriver();
+		Object myIdDriver = this.getIdDriver();
 		Object yourIdDriver = that.getIdDriver();
 		if (myIdDriver == null ? yourIdDriver != null : !myIdDriver.equals(yourIdDriver)) {
 			return false;

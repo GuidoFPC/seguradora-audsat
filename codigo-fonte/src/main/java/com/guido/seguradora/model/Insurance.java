@@ -1,11 +1,13 @@
-package com.guido.seguradora.models;
+package com.guido.seguradora.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,18 +23,18 @@ public class Insurance implements Serializable {
 	private static final long serialVersionUID = -3433711569825109856L;
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_insurance", unique = true, nullable = false, precision = 11)
 	private BigDecimal idInsurance;
 
 	@Column(name = "dt_creation", nullable = false)
-	private Date dtCreation;
+	private LocalDateTime dtCreation; // Data da solicitação do orçamento
 
 	@Column(name = "dt_updated")
-	private Date dtUpdated;
+	private LocalDateTime dtUpdated; // Data da atualização do orçamento
 
 	@Column(name = "is_active", nullable = false, length = 1)
-	private boolean isActive;
+	private boolean isActive; // Flag se o orçamento está ativo
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "id_car", nullable = false)

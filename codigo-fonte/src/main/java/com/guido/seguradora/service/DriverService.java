@@ -1,4 +1,4 @@
-package com.guido.seguradora.services;
+package com.guido.seguradora.service;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -8,8 +8,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.guido.seguradora.models.Driver;
-import com.guido.seguradora.repositories.DriverRepository;
+import com.guido.seguradora.model.Driver;
+import com.guido.seguradora.repository.DriverRepository;
 
 /**
  * Classe de serviços relacionados aos Motoristas

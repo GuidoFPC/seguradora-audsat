@@ -1,10 +1,12 @@
-package com.guido.seguradora.models;
+package com.guido.seguradora.model;
 
 import java.io.Serializable;
 import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,7 +22,7 @@ public class Customer implements Serializable {
 	private static final long serialVersionUID = 2184721103530048525L;
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_customer", unique = true, nullable = false, precision = 11)
 	private BigInteger idCustomer;
 

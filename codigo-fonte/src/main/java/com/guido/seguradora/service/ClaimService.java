@@ -1,4 +1,4 @@
-package com.guido.seguradora.services;
+package com.guido.seguradora.service;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -8,8 +8,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.guido.seguradora.models.Claim;
-import com.guido.seguradora.repositories.ClaimRepository;
+import com.guido.seguradora.dto.ClaimDTO;
+import com.guido.seguradora.model.Car;
+import com.guido.seguradora.model.Claim;
+import com.guido.seguradora.model.Driver;
+import com.guido.seguradora.repository.ClaimRepository;
 
 /**
  * Classe de serviços relacionados aos Sinistros
@@ -18,13 +21,34 @@ import com.guido.seguradora.repositories.ClaimRepository;
 public class ClaimService {
 
 	@Autowired
+	private CarDriverService carDriverService;
+
+	@Autowired
 	private ClaimRepository repository;
 
 	/**
 	 * Incluir um novo Sinistro
 	 */
-	public Claim save(Claim driver) throws Exception {
-		return repository.save(driver);
+	public Claim save(Claim claim) throws Exception {
+		return repository.save(claim);
+	}
+
+	/**
+	 * Incluir os Sinistro para o carro de acordo com o Documento do Motorista
+	 * informado no payload
+	 */
+	public void saveClaims(Car car, List<ClaimDTO> claims) {
+		for (ClaimDTO claimDTO : claims) {
+
+			Driver driver = carDriverService.findByCarAndDocument(claimDTO.getDocument(), car);
+
+			Claim claim = new Claim();
+			claim.setCar(car);
+			claim.setDriver(driver);
+			claim.setDtEvent(claimDTO.getDtEvent());
+
+			repository.save(claim);
+		}
 	}
 
 	/**

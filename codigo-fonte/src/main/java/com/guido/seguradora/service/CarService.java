@@ -1,4 +1,4 @@
-package com.guido.seguradora.services;
+package com.guido.seguradora.service;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -8,8 +8,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.guido.seguradora.models.Car;
-import com.guido.seguradora.repositories.CarRepository;
+import com.guido.seguradora.dto.CarDTO;
+import com.guido.seguradora.model.Car;
+import com.guido.seguradora.repository.CarRepository;
 
 /**
  * Classe de serviços relacionados aos Veículos
@@ -23,7 +24,8 @@ public class CarService {
 	/**
 	 * Incluir um novo Veiculo
 	 */
-	public Car save(Car car) throws Exception {
+	public Car save(CarDTO dto) throws Exception {
+		Car car = dto.toCar();
 		return repository.save(car);
 	}
 

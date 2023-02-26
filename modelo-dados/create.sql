@@ -48,14 +48,18 @@ comment on column CARS.VR_FIPE_VALUE is
 /*==============================================================*/
 create table CAR_DRIVERS 
 (
+   ID_CAR_DRIVER        NUMERIC(11)                    not null,
    ID_DRIVER            NUMERIC(11)                    not null,
    ID_CAR               NUMERIC(11)                    not null,
    IS_MAIN_DRIVER       BOOLEAN                        not null,
-   constraint PK_CAR_DRIVERS primary key (ID_DRIVER, ID_CAR)
+   constraint PK_CAR_DRIVERS primary key (ID_CAR_DRIVER)
 );
 
 comment on table CAR_DRIVERS is 
 'Motoristas dos Veículos';
+
+comment on column CAR_DRIVERS.ID_CAR_DRIVER is 
+'Id do objeto';
 
 comment on column CAR_DRIVERS.ID_DRIVER is 
 'Id do Motorista';

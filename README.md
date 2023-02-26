@@ -1,9 +1,9 @@
-# springboot
+# Precificação de seguros Audsat
 
 ## Descrição do projeto 
 
 <p align="justify">
-  Serviço de precificação de seguros audsat
+  Serviços referente a orçamentos de seguro de carros
 </p>
 
 ## Status
@@ -22,6 +22,7 @@
 - ``Java 8``
 - ``H2``
 - ``Springboot 2.7.9``
+- ``Lombok``
 
 ## Como rodar a aplicação
 

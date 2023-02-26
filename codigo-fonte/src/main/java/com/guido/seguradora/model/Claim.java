@@ -1,4 +1,4 @@
-package com.guido.seguradora.models;
+package com.guido.seguradora.model;
 
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,7 +23,7 @@ public class Claim implements Serializable {
 	private static final long serialVersionUID = 1909798621475948943L;
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_claim", unique = true, nullable = false, precision = 11)
 	private BigInteger idClaim;
 

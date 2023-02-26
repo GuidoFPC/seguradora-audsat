@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.guido.seguradora.models.Driver;
-import com.guido.seguradora.services.DriverService;
+import com.guido.seguradora.model.Driver;
+import com.guido.seguradora.service.DriverService;
 
 /**
  * Disponibilidade das funções rest para Motorista.
