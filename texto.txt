@@ -1,0 +1,53 @@
+customer           cliente
+insurances         seguros
+drivers            motoristas
+cars               carros
+car-drivers        motoristas de carros
+claims             sinistros
+
+
+---------------------------------------
+Insurances (seguros)
+---------------------------------------
+customer_id - Id do cliente
+car_id - Id do carro
+
+creation_dt - data da solicitação do orçamento
+updated_at - data da atualização do orçamento
+is_active - flag se o orçamento está ativo
+
+---------------------------------------
+Customers (clientes)
+---------------------------------------
+name- Nome do cliente
+driver_id - Id dos dados de motorista
+
+---------------------------------------
+drivers (motoristas)
+---------------------------------------
+document - CNH do motorista
+birthdate - Data de nascimento do motorista
+
+---------------------------------------
+Cars (veículos)
+---------------------------------------
+model - Modelo do veículo
+manufacturer - Fabricante do veículo
+year - Ano do Modelo do Veículo
+fipe_value - Valor do veículo
+
+---------------------------------------
+Claims (sinistros)
+---------------------------------------
+car_id - Id do veículo envolvido no sinistro
+driver_id - Id do motorista envolvido no sinistro
+event_date - Data do evento do sinistro
+
+---------------------------------------
+Car_Drivers (Motoristas dos Veículos)
+---------------------------------------
+car_id - Id do carro
+driver_id - Id do motorista que será condutor do veículo
+is_main_driver - Flag que sinaliza se o motorista é o principal condutor do veículo
+
+

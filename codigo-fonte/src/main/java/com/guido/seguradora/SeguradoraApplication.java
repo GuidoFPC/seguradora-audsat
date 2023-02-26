@@ -1,4 +1,4 @@
-package com.guido.teste.seguradora;
+package com.guido.seguradora;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
