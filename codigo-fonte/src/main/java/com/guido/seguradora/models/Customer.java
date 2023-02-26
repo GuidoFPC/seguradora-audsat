@@ -2,24 +2,25 @@ package com.guido.seguradora.models;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity(name = "customer")
 public class Customer implements Serializable {
 
 	private static final long serialVersionUID = 2184721103530048525L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_customer", unique = true, nullable = false, precision = 11)
 	private BigInteger idCustomer;
 
@@ -28,42 +29,7 @@ public class Customer implements Serializable {
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "id_driver", nullable = false)
-	private Driver drivers;
-
-	@OneToMany(mappedBy = "customer")
-	private Set<Insurance> insurances;
-
-	public BigInteger getIdCustomer() {
-		return idCustomer;
-	}
-
-	public void setIdCustomer(BigInteger idCustomer) {
-		this.idCustomer = idCustomer;
-	}
-
-	public String getDeName() {
-		return deName;
-	}
-
-	public void setDeName(String deName) {
-		this.deName = deName;
-	}
-
-	public Driver getDrivers() {
-		return drivers;
-	}
-
-	public void setDrivers(Driver drivers) {
-		this.drivers = drivers;
-	}
-
-	public Set<Insurance> getInsurances() {
-		return insurances;
-	}
-
-	public void setInsurances(Set<Insurance> insurances) {
-		this.insurances = insurances;
-	}
+	private Driver driver;
 
 	/**
 	 * Compares this instance with another Customer.

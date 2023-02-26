@@ -4,8 +4,8 @@ import java.math.BigInteger;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.guido.seguradora.models.Driver;
+import com.guido.seguradora.models.Insurance;
 
-public interface DriverRepository extends JpaRepository<Driver, BigInteger> {
+public interface InsuranceRepository extends JpaRepository<Insurance, BigInteger> {
 
 }

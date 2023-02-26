@@ -6,19 +6,22 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity(name = "claims")
 public class Claim implements Serializable {
 
 	private static final long serialVersionUID = 1909798621475948943L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_claim", unique = true, nullable = false, precision = 11)
 	private BigInteger idClaim;
 
@@ -27,43 +30,11 @@ public class Claim implements Serializable {
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "id_car", nullable = false)
-	private Car cars;
+	private Car car;
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "id_driver", nullable = false)
-	private Driver drivers;
-
-	public BigInteger getIdClaim() {
-		return idClaim;
-	}
-
-	public void setIdClaim(BigInteger idClaim) {
-		this.idClaim = idClaim;
-	}
-
-	public LocalDateTime getDtEvent() {
-		return dtEvent;
-	}
-
-	public void setDtEvent(LocalDateTime dtEvent) {
-		this.dtEvent = dtEvent;
-	}
-
-	public Car getCars() {
-		return cars;
-	}
-
-	public void setCars(Car cars) {
-		this.cars = cars;
-	}
-
-	public Driver getDrivers() {
-		return drivers;
-	}
-
-	public void setDrivers(Driver drivers) {
-		this.drivers = drivers;
-	}
+	private Driver driver;
 
 	@Override
 	public boolean equals(Object other) {
@@ -108,5 +79,4 @@ public class Claim implements Serializable {
 		}
 		return true;
 	}
-
 }

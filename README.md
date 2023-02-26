@@ -19,7 +19,9 @@
 
 ## Tecnologias utilizadas
 
-- ``Springboot 2.7.0``
+- ``Java 8``
+- ``H2``
+- ``Springboot 2.7.9``
 
 ## Como rodar a aplicação
 

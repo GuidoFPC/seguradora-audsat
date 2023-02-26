@@ -17,27 +17,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.guido.seguradora.models.Driver;
-import com.guido.seguradora.services.DriverService;
+import com.guido.seguradora.models.CarDriver;
+import com.guido.seguradora.services.CarDriverService;
 
 /**
- * Disponibilidade das funções rest para Motorista.
+ * Disponibilidade das funções rest para Motoristas dos Veículos.
  */
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/driver")
-public class DriverRest {
+@RequestMapping("/cardriver")
+public class CarDriverRest {
 
 	@Autowired
-	private DriverService service;
+	private CarDriverService service;
 
 	/**
-	 * Incluir um motorista
+	 * Incluir um motorista de veículo
 	 */
 	@PostMapping
-	public ResponseEntity<Driver> save(@RequestBody Driver driver) {
+	public ResponseEntity<CarDriver> save(@RequestBody CarDriver driver) {
 		try {
-			Driver _driver = service.save(driver);
+			CarDriver _driver = service.save(driver);
 
 			return new ResponseEntity<>(_driver, HttpStatus.CREATED);
 		} catch (Exception e) {
@@ -46,12 +46,12 @@ public class DriverRest {
 	}
 
 	/**
-	 * Lista todos os motoristas
+	 * Lista todos os motoristas de veículo
 	 */
 	@GetMapping
-	public ResponseEntity<List<Driver>> all() {
+	public ResponseEntity<List<CarDriver>> all() {
 		try {
-			List<Driver> drivers = service.findAll();
+			List<CarDriver> drivers = service.findAll();
 
 			if (drivers.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -63,11 +63,11 @@ public class DriverRest {
 	}
 
 	/**
-	 * Retorna um motorista pelo ID
+	 * Retorna um motorista de veículo pelo ID
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<Driver> findById(@PathVariable("id") BigInteger id) {
-		Optional<Driver> data = service.findById(id);
+	public ResponseEntity<CarDriver> findById(@PathVariable("id") BigInteger id) {
+		Optional<CarDriver> data = service.findById(id);
 
 		if (data.isPresent()) {
 			return new ResponseEntity<>(data.get(), HttpStatus.OK);
@@ -77,11 +77,11 @@ public class DriverRest {
 	}
 
 	/**
-	 * Atualiza os dados de um motorista
+	 * Atualiza os dados de um motorista de veículo
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<Driver> update(@PathVariable(value = "id") BigInteger id, @RequestBody Driver driver) {
-		Driver _driverBD = service.update(id, driver);
+	public ResponseEntity<CarDriver> update(@PathVariable(value = "id") BigInteger id, @RequestBody CarDriver driver) {
+		CarDriver _driverBD = service.update(id, driver);
 
 		if (_driverBD != null) {
 			return new ResponseEntity<>(_driverBD, HttpStatus.OK);
@@ -91,7 +91,7 @@ public class DriverRest {
 	}
 
 	/**
-	 * Apaga um determinado motorista por ID.
+	 * Apaga um determinado motorista de veículo por ID.
 	 * 
 	 * @param id
 	 */

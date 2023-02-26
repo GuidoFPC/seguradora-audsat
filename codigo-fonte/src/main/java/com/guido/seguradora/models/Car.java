@@ -6,17 +6,20 @@ import java.math.BigInteger;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity(name = "cars")
 public class Car implements Serializable {
 
 	private static final long serialVersionUID = -3330256145176200484L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_car", unique = true, nullable = false, precision = 11)
 	private BigInteger idCar;
 
@@ -31,46 +34,6 @@ public class Car implements Serializable {
 
 	@Column(name = "vr_fipe_value", nullable = false, precision = 11, scale = 2)
 	private BigDecimal vrFipeValue;
-
-	public BigInteger getIdCar() {
-		return idCar;
-	}
-
-	public void setIdCar(BigInteger idCar) {
-		this.idCar = idCar;
-	}
-
-	public String getDeModel() {
-		return deModel;
-	}
-
-	public void setDeModel(String deModel) {
-		this.deModel = deModel;
-	}
-
-	public String getDeManufacturer() {
-		return deManufacturer;
-	}
-
-	public void setDeManufacturer(String deManufacturer) {
-		this.deManufacturer = deManufacturer;
-	}
-
-	public String getDeYear() {
-		return deYear;
-	}
-
-	public void setDeYear(String deYear) {
-		this.deYear = deYear;
-	}
-
-	public BigDecimal getVrFipeValue() {
-		return vrFipeValue;
-	}
-
-	public void setVrFipeValue(BigDecimal vrFipeValue) {
-		this.vrFipeValue = vrFipeValue;
-	}
 
 	@Override
 	public boolean equals(Object other) {

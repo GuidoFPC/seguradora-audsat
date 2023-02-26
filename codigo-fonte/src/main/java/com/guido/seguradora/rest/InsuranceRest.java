@@ -25,8 +25,8 @@ import com.guido.seguradora.services.DriverService;
  */
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
-@RequestMapping("/driver")
-public class DriverRest {
+@RequestMapping("/insurance")
+public class InsuranceRest {
 
 	@Autowired
 	private DriverService service;

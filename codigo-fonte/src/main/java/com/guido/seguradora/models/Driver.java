@@ -6,17 +6,20 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity(name = "drivers")
 public class Driver implements Serializable {
 
 	private static final long serialVersionUID = -826124721603823589L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	// @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_driver", unique = true, nullable = false, precision = 11)
 	private BigInteger idDriver;
 
@@ -25,30 +28,6 @@ public class Driver implements Serializable {
 
 	@Column(name = "dt_birthdate", nullable = false)
 	private LocalDate dtBirthdate;
-
-	public BigInteger getIdDriver() {
-		return idDriver;
-	}
-
-	public void setIdDriver(BigInteger idDriver) {
-		this.idDriver = idDriver;
-	}
-
-	public BigInteger getNuDocument() {
-		return nuDocument;
-	}
-
-	public void setNuDocument(BigInteger nuDocument) {
-		this.nuDocument = nuDocument;
-	}
-
-	public LocalDate getDtBirthdate() {
-		return dtBirthdate;
-	}
-
-	public void setDtBirthdate(LocalDate dtBirthdate) {
-		this.dtBirthdate = dtBirthdate;
-	}
 
 	/**
 	 * Compares this instance with another Drivers.
