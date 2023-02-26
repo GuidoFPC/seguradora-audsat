@@ -1,15 +1,10 @@
-# Precificação de seguros Audsat
+# Orçamento de seguros Audsat
 
 ## Descrição do projeto 
 
 <p align="justify">
-  Serviços referente a orçamentos de seguro de carros
-</p>
-
-## Status
-
-<p align="justify">
-  Em desenvolvimento
+  Essa API tem tem o objetivo permitir inicialmente o cadastro e cálculo do orçamento 
+  de seguros. O cálculo do orçamento é realizado com base em algumas premissas.
 </p>
 
 ## Pré-requisitos
@@ -26,25 +21,32 @@
 
 ## Como rodar a aplicação
 
-- ``1. Em criação``
-- ``2. Configure o banco de dados em \backend\src\main\resources\application.properties``
+O projeto Orçamento de Seguros foi construído na estrura maven. 
+Então para rodar o projeto, entre até a pasta de código fonte
+```sh
+\{download_folder}\seguradora\codigo-fonte
+```
 
-<A documentação desse tópico ainda será concluída>
+Executar o comando abaixo na pasta do código fonte.
+```sh
+mvn install
+```
 
-## EndPoints ([DocumentoController](https://github.com/GuidoFPC/springbootvue/blob/main/backend/src/main/java/br/leg/camara/helloword/controllers/DocumentoController.java))
+Iniciar o projeto spring boot.
+```sh
+mvn spring-boot:run
+```
 
-- ``GET: http://localhost:8180/documentos?page=0&size=5&sort=nome,ASC`` (Recuperar todos)
+O console do H2 estará disponível em:
+```sh
+http://localhost:8080/h2-console/
+```
+
+## REST API
+
+- ``GET: http://localhost:8080/documentos?page=0&size=5&sort=nome,ASC``
 - ``GET: http://localhost:8180/documentos/{id}`` (Recuperar por id)
 - ``POST: http://localhost:8180/documentos`` (Inclusão)
 - ``PUT: http://localhost:8180/documentos/{id}`` (Alteração)
 - ``DELETE: http://localhost:8180/documentos/{id}`` (Deleção)
 
-## Tarefas em aberto
-
-:memo: 1. Componente de mensagem ( exibir msgs do sistema )
-
-:memo: 2. Paginação
-
-:memo: 3. Ordenação da tabela
-
-:memo: 4. Filtros da tabela
