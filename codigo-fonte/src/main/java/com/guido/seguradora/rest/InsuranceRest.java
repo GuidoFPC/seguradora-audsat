@@ -1,7 +1,6 @@
 package com.guido.seguradora.rest;
 
 import java.math.BigInteger;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,21 +20,23 @@ import com.guido.seguradora.dto.InsuranceDTO;
 import com.guido.seguradora.model.Insurance;
 import com.guido.seguradora.service.InsuranceService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 /**
  * Disponibilidade das funções rest para Orçamento de Seguro.
  */
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/insurance/budget")
+@Api(value = "Rest API Insurances")
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class InsuranceRest {
 
 	@Autowired
 	private InsuranceService service;
 
-	/**
-	 * Cadastro de Orçamento de Seguro
-	 */
 	@PostMapping
+	@ApiOperation(value = "Cadastro de Orçamento")
 	public ResponseEntity<Object> saveInsurance(@RequestBody InsuranceDTO dto) {
 		try {
 			Insurance _insurance = service.save(dto);
@@ -47,35 +48,8 @@ public class InsuranceRest {
 		}
 	}
 
-	/**
-	 * Lista todos os Orçamentos de Seguro
-	 * 
-	 * -----------------------------------------------------------------------------
-	 * TODO: ATENCAO: ESSE METODO NAO FOI SOLICITADO.
-	 * -----------------------------------------------------------------------------
-	 */
-	@GetMapping
-	public ResponseEntity<List<Insurance>> findAllInsurances() {
-		try {
-			List<Insurance> insurances = service.findAll();
-
-			if (insurances.isEmpty()) {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<>(insurances, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-
-	/**
-	 * Consulta de Orçamento por ID
-	 * 
-	 * @param id - BigInteger (id_insurance)
-	 * 
-	 * @return Insurance
-	 */
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Consulta de Orçamento")
 	public ResponseEntity<BudgetDTO> findInsuranceById(@PathVariable("id") BigInteger id) {
 		BudgetDTO dto = service.findByIdToDto(id);
 
@@ -86,13 +60,8 @@ public class InsuranceRest {
 		}
 	}
 
-	/**
-	 * Atualização do Orçamento de Seguro
-	 * 
-	 * @param id        - BigInteger (id_insurance)
-	 * @param insurance - Insurance
-	 */
 	@PutMapping("/{id}")
+	@ApiOperation(value = "Atualização de Orçamento")
 	public ResponseEntity<Insurance> updateInsurance(@PathVariable(value = "id") BigInteger id, @RequestBody Insurance insurance) {
 		Insurance _insuranceBD = service.update(id, insurance);
 
@@ -103,12 +72,8 @@ public class InsuranceRest {
 		}
 	}
 
-	/**
-	 * Remoção do Orçamento de Seguro
-	 * 
-	 * @param id - BigInteger (id_insurance)
-	 */
 	@DeleteMapping("/{id}")
+	@ApiOperation(value = "Remoção de Orçamento")
 	public ResponseEntity<HttpStatus> deleteInsurance(@PathVariable("id") BigInteger id) {
 		try {
 			service.delete(id);

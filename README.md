@@ -39,7 +39,7 @@ O console do H2 estará disponível em:
 
 <a href="http://localhost:8080/h2-console/" target="_blank">http://localhost:8080/h2-console/</a>
 
-A API está pronta para receber requisições rest.
+#### A API está pronta para receber requisições rest.
 
 ## Documentação SWAGGER
 
@@ -138,7 +138,7 @@ Obs: Para acessar a documentação o projeto deve estar rodando:
 
 ## Testes unitários
 
-Os testes unitários estão disponíveis na classe:
+Testes unitários disponíveis em:
 ```sh
-SeguradoraApplicationTests
+com.guido.seguradora.SeguradoraApplicationTests
 ```
