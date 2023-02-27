@@ -45,10 +45,11 @@ http://localhost:8080/h2-console/
 A API está pronta para receber requisições rest.
 
 ## REST API
+| Endpoint | Método| Descrição |
+|----------|--------|------------|
+| /insurance/budge | POST  | Cadastro de Orçamento |
+| /insurance/budge{id} | DELETE  | Remoção de Orçamento |
+| /insurance/budge{id} | GET  | Consulta de Orçamento |
+| /insurance/budge{id} | PUT  | Atualização de Orçamento |
 
-- ``GET: http://localhost:8080/documentos?page=0&size=5&sort=nome,ASC``
-- ``GET: http://localhost:8180/documentos/{id}`` (Recuperar por id)
-- ``POST: http://localhost:8180/documentos`` (Inclusão)
-- ``PUT: http://localhost:8180/documentos/{id}`` (Alteração)
-- ``DELETE: http://localhost:8180/documentos/{id}`` (Deleção)
-
+<a href="doc:introduction" target="_blank">Introduction</a>
