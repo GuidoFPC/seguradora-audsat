@@ -137,3 +137,10 @@ Obs: Para acessar a documentação o projeto deve estar rodando:
   "vrOrcamento": 27000.0
 }
 ```
+
+## Testes unitários
+
+Os testes unitários estão disponíveis na classe:
+```sh
+SeguradoraApplicationTests
+```
