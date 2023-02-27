@@ -7,32 +7,30 @@
   de seguros. O cálculo do orçamento é realizado com base em algumas premissas.
 </p>
 
-## Pré-requisitos
-
-- ``Java 8``
-- ``Maven``
-
 ## Tecnologias utilizadas
 
 - ``Java 8``
+- ``Maven 3.8.5``
 - ``H2``
-- ``Springboot 2.7.9``
+- ``Spring Boot 2.7.9``
 - ``Lombok``
+- ``Swagger``
 
 ## Rodando a API
 
-O projeto Orçamento de Seguros foi construído com maven. 
-Para rodar o projeto via linha de comando, navegue até a pasta de código fonte:
+#### O projeto Orçamento de Seguros foi construído com maven. Para rodar o projeto via linha de comando
+
+1. Navegue até a pasta de código fonte:
 ```sh
 Exemplo: {download_folder}\seguradora\codigo-fonte
 ```
 
-Na pasta, execute o comando abaixo:
+2. Na pasta, execute o comando abaixo:
 ```sh
 mvn install
 ```
 
-Para iniciar o projeto spring boot, execute o seguinte comando:
+3. Para iniciar o projeto spring boot, execute o seguinte comando:
 ```sh
 mvn spring-boot:run
 ```
