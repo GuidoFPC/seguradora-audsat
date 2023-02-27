@@ -46,9 +46,9 @@ A API está pronta para receber requisições rest.
 
 ## Documentação SWAGGER
 
-#### Projeto deve estar rodando
+Obs: Para acessar a documentação o projeto deve estar rodando:
 
-<a href="http://localhost:8080/swagger-ui.html" target="_blank">Swagger</a>
+- ``<a href="http://localhost:8080/swagger-ui.html" target="_blank">Acesse aqui a documentação Swagger</a>``
 
 ## REST API
 | Endpoint | Método| Descrição |
@@ -62,25 +62,25 @@ A API está pronta para receber requisições rest.
  - Payload: Cadastro de Orçamento:
 ```sh
 {
-    "car": {
-		"model": "Corolla Cross",
-		"manufacturer": "Toyota",
-		"year": "2023",
-		"fipeValue": 270000.00
-	},
-    "drivers": [
-		{
-			"document": "1234567890",
-			"name": "John Ciclans Silva",
-			"birthdate": "1984-11-25",
-			"main": true
-		}
-	],
-    "claims": [
-		{
-			"document": "1234567890",
-			"dtEvent": "2020-04-14T10:45"
-		}
-	]
+  "car": {
+    "model": "Corolla Cross",
+    "manufacturer": "Toyota",
+    "year": "2023",
+    "fipeValue": 270000.00
+  },
+  "drivers": [
+    {
+      "document": "1234567890",
+      "name": "John Ciclans Silva",
+      "birthdate": "1984-11-25",
+      "main": true
+    }
+  ],
+  "claims": [
+    {
+      "document": "1234567890",
+      "dtEvent": "2020-04-14T10:45"
+    }
+  ]
 }
 ```
