@@ -52,4 +52,4 @@ A API está pronta para receber requisições rest.
 | /insurance/budge{id} | GET  | Consulta de Orçamento |
 | /insurance/budge{id} | PUT  | Atualização de Orçamento |
 
-<a href="doc:introduction" target="_blank">Introduction</a>
+<a href="http://www.google.com.br" target="_blank">Introduction</a>
