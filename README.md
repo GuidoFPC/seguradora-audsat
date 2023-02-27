@@ -38,9 +38,8 @@ mvn spring-boot:run
 ```
 
 O console do H2 estará disponível em:
-```sh
-http://localhost:8080/h2-console/
-```
+
+<a href="http://localhost:8080/h2-console/" target="_blank">http://localhost:8080/h2-console/</a>
 
 A API está pronta para receber requisições rest.
 
