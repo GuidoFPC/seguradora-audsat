@@ -48,7 +48,7 @@ A API está pronta para receber requisições rest.
 
 Obs: Para acessar a documentação o projeto deve estar rodando:
 
-- ``<a href="http://localhost:8080/swagger-ui.html" target="_blank">Acesse aqui a documentação Swagger</a>``
+<a href="http://localhost:8080/swagger-ui.html" target="_blank">Acesse aqui a documentação Swagger</a>
 
 ## REST API
 | Endpoint | Método| Descrição |
@@ -59,7 +59,7 @@ Obs: Para acessar a documentação o projeto deve estar rodando:
 | /insurance/budge{id} | PUT  | Atualização de Orçamento |
 
 #### Exemplos
- - Payload: Cadastro de Orçamento:
+ - Payload Cadastro de Orçamento
 ```sh
 {
   "car": {
@@ -82,5 +82,59 @@ Obs: Para acessar a documentação o projeto deve estar rodando:
       "dtEvent": "2020-04-14T10:45"
     }
   ]
+}
+```
+
+ - Response com JSON esperado:
+```sh
+{
+  "idInsurance": 1,
+  "dtCreation": "2023-02-26T23:12:20.549",
+  "dtUpdated": null,
+  "car": {
+    "idCar": 1,
+    "deModel": "Corolla Cross",
+    "deManufacturer": "Toyota",
+    "nuYear": 2023,
+    "vrFipeValue": 270000.00
+  },
+  "customer": {
+    "idCustomer": 1,
+    "deName": "John Ciclans Silva",
+    "driver": {
+      "idDriver": 1,
+      "nuDocument": 1234567890,
+      "dtBirthdate": "1984-11-25"
+    }
+  },
+  "active": true
+  }
+}
+```
+
+ - Consulta de Orçamento
+ ```sh
+	/insurance/budget/1
+```
+
+ - Response com JSON esperado:
+ ```sh
+{
+  "idInsurance": 1,
+  "active": true,
+  "dtCreation": "2023-02-26T23:12",
+  "dtUpdated": null,
+  "car": {
+    "idCar": 1,
+    "model": "Corolla Cross",
+    "manufacturer": "Toyota",
+    "year": 2023,
+    "fipeValue": 270000.00
+  },
+  "customer": {
+    "idDriver": 1,
+    "name": "John Ciclans Silva"
+  },
+  "vrOrcamento": 27000.0
 }
 ```
